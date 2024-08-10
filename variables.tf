@@ -19,16 +19,6 @@ variable "deploy_prefix" {
   description = "For local/dev deployments consider using your name or nickname"
 }
 
-variable "atlas_public_key" {
-  type        = string
-  description = "MongoDB Atlas Public Key"
-}
-
-variable "atlas_private_key" {
-  type        = string
-  description = "MongoDB Atlas Private Key"
-}
-
 variable "atlas_org_id" {
   type        = string
   description = "Atlas organization id"
@@ -39,13 +29,6 @@ variable "atlas_project_name" {
   default     = "gcp-ms-soffredi"
   description = "Atlas project name"
 }
-
-# variable "cluster_instance_size_name" {
-#   type        = string
-#   description = "Cluster instance size name"
-#   # This is to access the M0 Serverless option. CHnage it to your needs
-#   default     = "M0"
-# }
 
 variable "atlas_region" {
   type        = string
@@ -68,3 +51,29 @@ variable "db_user" {
 #   type        = string
 #   description = "DB host. Should be like: mongodb+srv://<project_name>.<abc123>.mongodb.net"
 # }
+
+variable "deploy_env" {
+  type = string
+  description = "The environment you're deploying to"
+  default = "dev"
+
+  validation {
+    condition     = contains(["dev", "staging", "prod"], var.deploy_env)
+    error_message = "Valid values for deploy_env are \"dev\", \"staging\", and \"prod\"."
+  }
+}
+
+# # Local deployment only. The main.tfvars file is in the .gitignore on purpose 
+# so your keys will stay on your computer, but I do not recommend using 
+# variables for pub/priv keys.
+variable "atlas_public_key" {
+  type        = string
+  description = "MongoDB Atlas Public Key"
+  default     = null
+}
+
+variable "atlas_private_key" {
+  type        = string
+  description = "MongoDB Atlas Private Key"
+  default     = null
+}
