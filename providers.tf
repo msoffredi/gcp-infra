@@ -18,6 +18,8 @@ provider "google" {
 }
 
 provider "mongodbatlas" {
+    # These keys will default to null in case you don't provide them and Terraform
+    # will try to get them from the environment variables.
     public_key  = var.atlas_public_key
     private_key = var.atlas_private_key
 }
