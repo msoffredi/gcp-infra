@@ -41,7 +41,7 @@ jobs:
             - name: 'Adjusting execution permissions to backend shell script...'
               run: chmod a+rx .deploy/staging/backend.tf.sh
             - name: 'Generating backend.tf file...'
-              run: ./.deploy/staging/backend.tf.sh
+              run: ./.deploy/staging/backend.tf.sh && cat backend.tf
 
             # Login to GCP
             - name: 'Logging in to GCP...'
