@@ -39,7 +39,8 @@ jobs:
 
             # Copy files
             - name: 'Copying files...'
-              run: ./.deploy/staging/backend.tf.sh
+              run: chmod +x ./.deploy/staging/backend.tf.sh && \
+                  ./.deploy/staging/backend.tf.sh
 
             # Login to GCP
             - name: 'Logging in to GCP...'
