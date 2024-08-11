@@ -38,9 +38,10 @@ jobs:
               uses: actions/checkout@v3
 
             # Copy files
-            - name: 'Copying files...'
-              run: chmod +x ./.deploy/staging/backend.tf.sh && \
-                  ./.deploy/staging/backend.tf.sh
+            - name: 'Adjusting execution permissions to backend shell script...'
+              run: chmod o+rx .deploy/staging/backend.tf.sh
+            - name: 'Generating backend.tf file...'
+              run: ./.deploy/staging/backend.tf.sh
 
             # Login to GCP
             - name: 'Logging in to GCP...'
