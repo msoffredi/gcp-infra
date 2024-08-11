@@ -39,7 +39,7 @@ jobs:
 
             # Copy files
             - name: 'Adjusting execution permissions to backend shell script...'
-              run: chmod o+rx .deploy/staging/backend.tf.sh
+              run: chmod a+rx .deploy/staging/backend.tf.sh
             - name: 'Generating backend.tf file...'
               run: ./.deploy/staging/backend.tf.sh
 
