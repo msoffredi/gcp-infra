@@ -17,8 +17,9 @@ This reporsitory has foundational terraform to deploy common infrastructure need
     - API Gateway API
     - Service Control API
     - MongoDB Atlas (with valid org and project. See the [variables.tf file](variables.tf) for data you need from your MongoDB Atlas instance)
-4. You copy `backend.tf.example` to `backend.tf` and update as needed (no update needed for local deploy)
-5. You copy `main.tfvars.example` to `main.tfvars` and update accordingly
+4. You have a deployment bucket and know the bucket name
+5. You copy `backend.tf.example` to `backend.tf` and update as needed (no update needed for local deploy)
+6. You copy `main.tfvars.example` to `main.tfvars` and update accordingly
 
 ### Deploying for local/dev
 

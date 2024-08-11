@@ -1,16 +1,16 @@
-resource "google_storage_bucket" "deploy_bucket" {
-    provider      = google
-    location      = var.region
-    name          = var.deploy_bucket
-    force_destroy = false
+# resource "google_storage_bucket" "deploy_bucket" {
+#     provider      = google
+#     location      = var.region
+#     name          = var.deploy_bucket
+#     force_destroy = false
     
-    # Use "US" or similar for multi-region  
-    storage_class = "STANDARD"
+#     # Use "US" or similar for multi-region  
+#     storage_class = "STANDARD"
 
-    versioning {
-        enabled = true
-    }
-}
+#     versioning {
+#         enabled = true
+#     }
+# }
 
 # Needed for the storage to be used by Cloud Builder to build Cloud Functions out of it
 resource "google_project_iam_binding" "storage_obj_admin_permission" {

@@ -11,7 +11,7 @@ variable "region" {
 
 variable "deploy_bucket" {
   type        = string
-  description = "The cloud storage bucket for your entire project"
+  description = "The cloud storage deployment bucket for your entire project"
 }
 
 variable "deploy_prefix" {
