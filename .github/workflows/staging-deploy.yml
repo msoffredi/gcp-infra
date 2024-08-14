@@ -37,11 +37,9 @@ jobs:
             - name: 'Checking out code...'
               uses: actions/checkout@v3
 
-            # Copy files
-            - name: 'Adjusting execution permissions to backend shell script...'
-              run: chmod a+rx .deploy/staging/backend.tf.sh
+            # Generate backend.tf file
             - name: 'Generating backend.tf file...'
-              run: ./.deploy/staging/backend.tf.sh && cat backend.tf
+              run: chmod a+rx .deploy/staging/backend.tf.sh && ./.deploy/staging/backend.tf.sh
 
             # Login to GCP
             - name: 'Logging in to GCP...'
@@ -53,6 +51,8 @@ jobs:
                   service_account: ${{ vars.GCP_MS_SVC_ACCT_STAGING }}
                   token_format: 'access_token'
                   access_token_lifetime: '120s'
+              env:
+                  ACTIONS_STEP_DEBUG: true
             - name: 'Echo...'
               run: printenv
 
