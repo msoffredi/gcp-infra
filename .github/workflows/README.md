@@ -11,3 +11,6 @@ In the deocument shared above there's a section about assigning roles to your se
 -   `roles/storage.admin`
 -   `roles/resourcemanager.projectIamAdmin`
 -   `roles/iam.serviceAccountAdmin`
+-   `roles/iam.roleAdmin`
+-   `roles/iam.serviceAccountTokenCreator`
+-   `roles/iam.serviceAccountUser`
