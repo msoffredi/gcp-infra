@@ -57,8 +57,8 @@ jobs:
                   token_format: 'access_token'
                   access_token_lifetime: '120s'
 
-            - name: 'Echo...'
-              run: printenv
+            # - name: 'Echo...'
+            #   run: printenv
 
             # Terraform steps
             - name: 'Settign up Terraform...'
@@ -79,9 +79,9 @@ jobs:
               id: plan
               run: terraform plan
               continue-on-error: true
-              env:
-                  ACTIONS_STEP_DEBUG: true
-                  TF_LOG: TRACE
+              # env:
+              #     ACTIONS_STEP_DEBUG: true
+              #     TF_LOG: ERROR
             - name: 'Terraform Plan Status...'
               if: steps.plan.outcome == 'failure'
               run: exit 1
