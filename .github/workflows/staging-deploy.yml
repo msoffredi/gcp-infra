@@ -41,6 +41,9 @@ jobs:
             - name: 'Generating backend.tf file...'
               run: chmod a+rx .deploy/staging/backend.tf.sh && ./.deploy/staging/backend.tf.sh
 
+            - name: 'backend.tf'
+              run: cat backend.tf
+
             # Login to GCP
             - name: 'Logging in to GCP...'
               id: auth
@@ -52,8 +55,8 @@ jobs:
                   token_format: 'access_token'
                   access_token_lifetime: '120s'
 
-            # - name: 'Echo...'
-            #   run: printenv
+            - name: 'Echo...'
+              run: printenv
 
             # Terraform steps
             - name: 'Settign up Terraform...'
