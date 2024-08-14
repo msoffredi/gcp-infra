@@ -2,15 +2,8 @@ name: staging-deploy
 run-name: ${{ github.actor }} has triggered the pipeline for Staging
 
 on:
-    pull_request:
-        branches: [main]
     push:
         branches: [main]
-
-# defaults:
-#     run:
-#         shell: bash
-#         working-directory: ./gcp-vpc-gke-production
 
 permissions:
     contents: read
@@ -30,15 +23,13 @@ jobs:
             TF_VAR_db_password: ${{ secrets.DB_PASSWORD_STAGING }}
             TF_VAR_project_id: ${{ vars.PROJECT_ID_STAGING }}
             TF_VAR_atlas_org_id: ${{ vars.ATLAS_ORG_ID }}
-            # TF_VAR_deploy_prefix: staging
             TF_VAR_db_user: 'gcp-ms-staging'
-            # TF_VAR_deploy_env: 'staging'
             TF_VAR_db_instance_name: 'gcp-ms-staging'
             TF_VAR_atlas_project_name: 'gcp-ms-staging'
         steps:
             # Checkout code form repo
             - name: 'Checking out code...'
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
 
             # Generate backend.tf file
             - name: 'Generating backend.tf file...'
@@ -58,12 +49,9 @@ jobs:
                   token_format: 'access_token'
                   access_token_lifetime: '120s'
 
-            # - name: 'Echo...'
-            #   run: printenv
-
             # Terraform steps
             - name: 'Settign up Terraform...'
-              uses: hashicorp/setup-terraform@v2
+              uses: hashicorp/setup-terraform@v3
               with:
                   terraform_version: 1.9
                   terraform_wrapper: true
@@ -80,9 +68,6 @@ jobs:
               id: plan
               run: terraform plan
               continue-on-error: true
-              # env:
-              #     ACTIONS_STEP_DEBUG: true
-              #     TF_LOG: ERROR
             - name: 'Terraform Plan Status...'
               if: steps.plan.outcome == 'failure'
               run: exit 1
