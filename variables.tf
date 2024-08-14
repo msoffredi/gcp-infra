@@ -26,7 +26,6 @@ variable "atlas_org_id" {
 
 variable "atlas_project_name" {
   type        = string
-  default     = "gcp-ms-soffredi"
   description = "Atlas project name"
 }
 
