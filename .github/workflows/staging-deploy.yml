@@ -51,10 +51,9 @@ jobs:
                   service_account: ${{ vars.GCP_MS_SVC_ACCT_STAGING }}
                   token_format: 'access_token'
                   access_token_lifetime: '120s'
-              env:
-                  ACTIONS_STEP_DEBUG: true
-            - name: 'Echo...'
-              run: printenv
+
+            # - name: 'Echo...'
+            #   run: printenv
 
             # Terraform steps
             - name: 'Settign up Terraform...'
@@ -75,6 +74,9 @@ jobs:
               id: plan
               run: terraform plan
               continue-on-error: true
+              env:
+                  ACTIONS_STEP_DEBUG: true
+                  TF_LOG: WARN
             - name: 'Terraform Plan Status...'
               if: steps.plan.outcome == 'failure'
               run: exit 1
