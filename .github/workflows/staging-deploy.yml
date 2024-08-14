@@ -30,8 +30,10 @@ jobs:
             TF_VAR_db_password: ${{ secrets.DB_PASSWORD_STAGING }}
             TF_VAR_project_id: ${{ vars.PROJECT_ID_STAGING }}
             TF_VAR_atlas_org_id: ${{ vars.ATLAS_ORG_ID }}
-            TF_VAR_deploy_prefix: staging
+            # TF_VAR_deploy_prefix: staging
             TF_VAR_db_user: 'gcp-ms-staging'
+            # TF_VAR_deploy_env: 'staging'
+            TF_VAR_db_instance_name: 'gcp-ms-staging'
         steps:
             # Checkout code form repo
             - name: 'Checking out code...'
