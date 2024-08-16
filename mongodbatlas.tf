@@ -20,7 +20,7 @@ resource "mongodbatlas_serverless_instance" "db-instance" {
     
     # The proposal is to have one instance to allocate all databases, so 
     # consider an instance name representing your project.
-    name = "gcp-ms-soffredi"
+    name = var.db_instance_name
 
     provider_settings_backing_provider_name = "GCP"
     provider_settings_provider_name = "SERVERLESS"

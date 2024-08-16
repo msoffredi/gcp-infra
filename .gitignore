@@ -1,8 +1,13 @@
+# Folders
 .terraform/
 
+# Specific files
+/main.tfvars
+/backend.tf
+
+# Files
 .terraform.lock.hcl
 tfplan
-main.tfvars
 backend.tf
 terraform.tfstate
 terraform.tfstate.backup

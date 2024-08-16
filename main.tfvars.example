@@ -2,18 +2,23 @@
 
 project_id = "<your-project-id>"
 
-# Must be unique in the entire GCP
+# Must be unique in the entire GCP and pre built at terraform execution time
 deploy_bucket = "<your-gcs-bucket>"
 
 # Consider using your name or nickname
 deploy_prefix = "<your-prefix>"
 
+# MongoDB atlas
+atlas_org_id = "<your-mongodb-atlas-org-id>"
+atlas_project_name = "<your-mongodb-atlas-project-name>"
+
 # Local deployment only. The main.tfvars file is in the .gitignore on purpose 
 # so your keys will stay on your computer, but I do not recommend using 
 # variables for pub/priv keys. See README.md for more information.
-atlas_public_key = "<atlas_public_key>"
-atlas_private_key = "<atlas_private_key>"
+atlas_public_key = "<atlas-public-key>"
+atlas_private_key = "<atlas-private-key>"
 
-atlas_org_id = "atlas_org_id"
-db_password = "<db_password>"
-db_user = "<db_user>"
+# Database info
+db_instance_name = "<your-db-instance-name>"
+db_password = "<your-db-password>"
+db_user = "<your-db-user>"
