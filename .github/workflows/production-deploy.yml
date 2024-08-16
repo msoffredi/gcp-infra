@@ -1,9 +1,8 @@
-name: staging-deploy
-run-name: ${{ github.actor }} has triggered the pipeline for Staging
+name: production-deploy
+run-name: ${{ github.actor }} has triggered the pipeline for Production
 
 on:
-    push:
-        branches: [main]
+    workflow_dispatch:
 
 permissions:
     contents: read
@@ -17,15 +16,15 @@ jobs:
         env:
             MONGODB_ATLAS_PUBLIC_KEY: ${{ secrets.MONGODB_ATLAS_PUBLIC_KEY }}
             MONGODB_ATLAS_PRIVATE_KEY: ${{ secrets.MONGODB_ATLAS_PRIVATE_KEY }}
-            DEPLOY_BUCKET: ${{ vars.DEPLOY_BUCKET_STAGING }}
+            DEPLOY_BUCKET: ${{ vars.DEPLOY_BUCKET_PRODUCTION }}
 
             # Terraform env vars are lowcase by project convention
-            TF_VAR_db_password: ${{ secrets.DB_PASSWORD_STAGING }}
-            TF_VAR_project_id: ${{ vars.PROJECT_ID_STAGING }}
+            TF_VAR_db_password: ${{ secrets.DB_PASSWORD_PRODUCTION }}
+            TF_VAR_project_id: ${{ vars.PROJECT_ID_PRODUCTION }}
             TF_VAR_atlas_org_id: ${{ vars.ATLAS_ORG_ID }}
-            TF_VAR_db_user: 'gcp-ms-staging'
-            TF_VAR_db_instance_name: 'gcp-ms-staging'
-            TF_VAR_atlas_project_name: 'gcp-ms-staging'
+            TF_VAR_db_user: 'gcp-ms'
+            TF_VAR_db_instance_name: 'gcp-ms-prod'
+            TF_VAR_atlas_project_name: 'gcp-ms-prod'
         steps:
             # Checkout code form repo
             - name: 'Checking out code...'
@@ -43,9 +42,9 @@ jobs:
               id: auth
               uses: google-github-actions/auth@v2
               with:
-                  workload_identity_provider: ${{ vars.GCP_MS_IDP_STAGING }}
+                  workload_identity_provider: ${{ vars.GCP_MS_IDP_PRODUCTION }}
                   create_credentials_file: true
-                  service_account: ${{ vars.GCP_MS_SVC_ACCT_STAGING }}
+                  service_account: ${{ vars.GCP_MS_SVC_ACCT_PRODUCTION }}
                   token_format: 'access_token'
                   access_token_lifetime: '120s'
 
