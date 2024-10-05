@@ -14,3 +14,12 @@ In the deocument shared above there's a section about assigning roles to your se
 -   `roles/iam.roleAdmin`
 -   `roles/iam.serviceAccountTokenCreator`
 -   `roles/iam.serviceAccountUser`
+-   `roles/compute.admin`
+
+## DNS considerations
+
+If you handle DNS in one project but run a deploy GitHub Action on another project, you will need to grant your service account permission across projects. To do that you have to:
+
+-   Go to the target project, IAM, Service Accounts, and copy the service account email address
+-   Switch to the project where the DNS is managed
+-   Go to IAM and add a new access by using the email address you copied, and grant the role `roles/dns.admin`

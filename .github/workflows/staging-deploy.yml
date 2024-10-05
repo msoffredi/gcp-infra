@@ -5,9 +5,6 @@ on:
     push:
         branches: [main]
 
-permissions:
-    contents: read
-
 jobs:
     deploy:
         runs-on: ubuntu-latest
@@ -35,9 +32,6 @@ jobs:
             - name: 'Generating backend.tf file...'
               run: chmod a+rx .deploy/backend.tf.sh && ./.deploy/backend.tf.sh
 
-            - name: 'backend.tf'
-              run: cat backend.tf
-
             # Login to GCP
             - name: 'Logging in to GCP...'
               id: auth
@@ -50,7 +44,7 @@ jobs:
                   access_token_lifetime: '120s'
 
             # Terraform steps
-            - name: 'Settign up Terraform...'
+            - name: 'Setting up Terraform...'
               uses: hashicorp/setup-terraform@v3
               with:
                   terraform_version: 1.9

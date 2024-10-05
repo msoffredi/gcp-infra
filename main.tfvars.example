@@ -1,12 +1,4 @@
-# For dev and local deployments mostly
-
 project_id = "<your-project-id>"
-
-# Must be unique in the entire GCP and pre built at terraform execution time
-deploy_bucket = "<your-gcs-bucket>"
-
-# Consider using your name or nickname
-deploy_prefix = "<your-prefix>"
 
 # MongoDB atlas
 atlas_org_id = "<your-mongodb-atlas-org-id>"
